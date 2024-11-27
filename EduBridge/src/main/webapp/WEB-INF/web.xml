@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+         version="3.0">
+
+    <display-name>Student-Teacher Management System</display-name>
+
+    <!-- Welcome file -->
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- General (Common) Pages -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <jsp-file>/login.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <jsp-file>/logout.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <!-- Student Pages -->
+    <servlet>
+        <servlet-name>StudentDashboard</servlet-name>
+        <jsp-file>/student/dashboard.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentDashboard</servlet-name>
+        <url-pattern>/student/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StudentHomework</servlet-name>
+        <jsp-file>/student/student-homework.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentHomework</servlet-name>
+        <url-pattern>/student/homework</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StudentHomeworkDetail</servlet-name>
+        <jsp-file>/student/student-homework-detail.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentHomeworkDetail</servlet-name>
+        <url-pattern>/student/homework/detail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StudentScores</servlet-name>
+        <jsp-file>/student/student-scores.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentScores</servlet-name>
+        <url-pattern>/student/scores</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StudentAttendance</servlet-name>
+        <jsp-file>/student/student-attendance.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentAttendance</servlet-name>
+        <url-pattern>/student/attendance</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StudentAttendanceDetail</servlet-name>
+        <jsp-file>/student/student-attendance-detail.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StudentAttendanceDetail</servlet-name>
+        <url-pattern>/student/attendance/detail</url-pattern>
+    </servlet-mapping>
+
+    <!-- Teacher Pages -->
+    <servlet>
+        <servlet-name>TeacherDashboard</servlet-name>
+        <jsp-file>/teacher/dashboard.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherDashboard</servlet-name>
+        <url-pattern>/teacher/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherStudents</servlet-name>
+        <jsp-file>/teacher/teacher-students.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherStudents</servlet-name>
+        <url-pattern>/teacher/students</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherStudentDetail</servlet-name>
+        <jsp-file>/teacher/teacher-student-detail.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherStudentDetail</servlet-name>
+        <url-pattern>/teacher/students/detail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherScores</servlet-name>
+        <jsp-file>/teacher/teacher-scores.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherScores</servlet-name>
+        <url-pattern>/teacher/scores</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherScoreDetail</servlet-name>
+        <jsp-file>/teacher/teacher-score-detail.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherScoreDetail</servlet-name>
+        <url-pattern>/teacher/scores/detail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherAttendance</servlet-name>
+        <jsp-file>/teacher/teacher-attendence.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherAttendance</servlet-name>
+        <url-pattern>/teacher/attendance</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherAttendanceDetail</servlet-name>
+        <jsp-file>/teacher/teacher-attendance-detail.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherAttendanceDetail</servlet-name>
+        <url-pattern>/teacher/attendance/detail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherHomework</servlet-name>
+        <jsp-file>/teacher/teacher-homework.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TeacherHomework</servlet-name>
+        <url-pattern>/teacher/homework</url-pattern>
+    </servlet-mapping>
+</web-app>
