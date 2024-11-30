@@ -70,6 +70,20 @@
             int rows = pstmt.executeUpdate();
             if (rows > 0) {
                 message = "학생 정보가 성공적으로 추가되었습니다.";
+                // attendancelogs 테이블에 데이터 삽입
+                String attendanceSql = "INSERT INTO attendancelogs (student_id, class_id, attendance_date, attendance_status, attendance_week) " +
+                                        "VALUES (?, ?, '2024-11-01', 'Present', 1)";
+                pstmt = conn.prepareStatement(attendanceSql);
+                pstmt.setString(1, studentId);
+                pstmt.setString(2, classId);
+                
+                int attendanceRows = pstmt.executeUpdate();
+                if (attendanceRows > 0) {
+                    message += "";
+                } else {
+                    message += " 출석 정보 추가에 실패했습니다.";
+                }
+
             } else {
                 message = "학생 정보 추가에 실패했습니다.";
             }

@@ -53,21 +53,30 @@
 
             // 학생 성적 조회
             String query = "SELECT s.student_id, s.student_name, " +
-                           "SUM(CASE WHEN al.attendance_status = 'Present' THEN 10 " +
-                           "         WHEN al.attendance_status = 'Late' THEN 5 " +
-                           "         ELSE 0 END) AS attendance_score, " +
-                           "AVG(hw.grade) AS homework_score, " +
-                           "AVG(el.score) AS exam_score " +
-                           "FROM students s " +
-                           "LEFT JOIN attendanceLogs al ON s.student_id = al.student_id AND s.class_id = al.class_id " +
-                           "LEFT JOIN homeworkLogs hw ON s.student_id = hw.student_id AND s.class_id = hw.class_id " +
-                           "LEFT JOIN examLogs el ON s.student_id = el.student_id AND s.class_id = el.class_id " +
-                           "WHERE s.class_id IN (" + classIds + ") " +
-                           "GROUP BY s.student_id, s.student_name " +
-                           "ORDER BY (SUM(CASE WHEN al.attendance_status = 'Present' THEN 10 " +
-                           "                   WHEN al.attendance_status = 'Late' THEN 5 " +
-                           "                   ELSE 0 END) * 0.2 + " +
-                           "          AVG(hw.grade) * 0.3 + AVG(el.score) * 0.5) DESC";
+               "  COALESCE(attendance_score.attendance_score, 0) AS attendance_score, " +
+               "  AVG(hw.grade) AS homework_score, " +
+               "  AVG(el.score) AS exam_score " +
+               "FROM students s " +
+               "LEFT JOIN ( " +
+               "    SELECT student_id, " +
+               "           SUM(CASE " +
+               "                 WHEN attendance_status = 'Present' THEN 100 " +
+               "                 WHEN attendance_status = 'Late' THEN 50 " +
+               "                 WHEN attendance_status = 'Absent' THEN 0 " +
+               "                 ELSE 0 " +
+               "               END) AS attendance_score " +
+               "    FROM attendancelogs " +
+               "    GROUP BY student_id " +
+               ") AS attendance_score ON s.student_id = attendance_score.student_id " +
+               "LEFT JOIN homeworkLogs hw ON s.student_id = hw.student_id AND s.class_id = hw.class_id " +
+               "LEFT JOIN examLogs el ON s.student_id = el.student_id AND s.class_id = el.class_id " +
+               "WHERE s.class_id IN (" + classIds + ") " +
+               "GROUP BY s.student_id, s.student_name " +
+               "ORDER BY (attendance_score.attendance_score * 0.2 + " +
+               "          AVG(hw.grade) * 0.3 + AVG(el.score) * 0.5) DESC";
+
+            
+            
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();
     %>
